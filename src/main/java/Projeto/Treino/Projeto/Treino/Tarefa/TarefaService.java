@@ -1,5 +1,6 @@
 package Projeto.Treino.Projeto.Treino.Tarefa;
 
+import Projeto.Treino.Projeto.Treino.Exceptions.TarefaJaExistenteException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class TarefaService {
     public void CriarTarefa(String titulo, String descricao, LocalDateTime data_inicio, boolean concluida) {
 
         if (tarefaRepository.existsBytitulo(titulo)) {
-            throw new RuntimeException("tarefa com esse titulo ja existe!");
+            throw new TarefaJaExistenteException("tarefa com esse titulo ja existe!");
         }
 
         Tarefa tarefa = new Tarefa();
